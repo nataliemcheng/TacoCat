@@ -5,6 +5,13 @@
     --white-color: #FFF4E9;
 }
 
+.fontFamily {
+    font-family: 'Crimson Text', serif;
+    font-family: 'Handjet', cursive;
+    font-family: 'Lugrasimo', cursive;
+    font-family: 'Montserrat', sans-serif;
+}
+
 body {
     color:var(--dark-color);
 }

@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Natalie Cheng</title>
+    <title>TacoCat: A Coding Project By Natalie Cheng</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,13 +17,18 @@
     <link href="css/prism.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/favicon_io/favicon-32x32.png">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Handjet:wght@500&family=Lugrasimo&family=Montserrat:ital,wght@1,600&display=swap" rel="stylesheet">
+
 </head>
 
 <body class="d-flex flex-column h-100">
     <!-- Nav Section -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="img/NC.png" class="d-inline-block align-text-top" alt="Natalie Cheng Logo" width="30" height="24"> APP NAME</a>
+            <a class="navbar-brand fontFamily" href="#"><img src="img/NC.png" class="d-inline-block align-text-top" alt="Natalie Cheng Logo" width="30" height="24"> TacoCat</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -40,7 +45,7 @@
                         <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://github.com/nataliemcheng/JSSiteTemplate">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/nataliemcheng/TacoCat">Git Repo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="https://nataliecheng-portfolio.netlify.app/">About</a>
@@ -53,21 +58,81 @@
     <!-- Main Section -->
     <main class="flex-shrink-0">
         <div class="container py-4 px-5 mt-5">
-            <h2 class="border-1 border-bottom border-dark">The Code for APP NAME</h2>
+            <h2 class="border-1 border-bottom border-dark">The Code for TacoCat</h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-                        // Call Hello World
-                        function helloWorld() {
-                            alert("Hello World");
+                        // controller function
+                        function getVals() {
+                            document.getElementById("alert").classList.add("invisible");
+
+                            let userInput = document.getElementById("userInput").value;
+                            let returnObj = checkPalin(userInput);
+                            display(returnObj);
+                        }
+
+                        // logic function
+                        function checkPalin(string) {
+                            string = string.toLowerCase();
+                            let regex = /[^a-z0-9]/gi;
+                            string = string.replace(regex,"");
+
+                            let revString = [];
+                            let returnObj = {};
+
+                            for (let i = string.length - 1; i >= 0; i--) {
+                                revString += string[i];
+                            }
+
+                            if (revString == string) {
+                                returnObj.msg = "Well Done! You entered a palindrome!";
+                            } else {
+                                returnObj.msg = "Sorry! You did not enter a palindrome!";
+                            }
+
+                            returnObj.reversed = revString;
+                            return returnObj;
+                        }
+
+                        // view function
+                        function display(returnObj) {
+                            document.getElementById("alertHeader").innerHTML = returnObj.msg;
+                            document.getElementById("msg").innerHTML = `Your phrase reversed is: ${returnObj.reversed}`;
+                            document.getElementById("alert").classList.remove("invisible");
                         }
                     </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                    <p>The Code is structured in three functions:</p>
+                    <h5>getVals()</h5>
+                    <p>The function getVals() is the controller function. It starts by getting the id of alert to hide the alert so it only
+                        shows after a user has entered their word. By using the id element method, we can get the string that the user entered in.
+                        Then, another object is created to store the result of the second function checkPalin(), which returns an object saying if
+                        the string entered is a palindrome or not. That object is used as the input for the display function, which displays the 
+                        results back to the user.
+                    </p>
+                    <hr>
+                    <h5>checkPalin()</h5>
+                    <p>The function checkPalin() is the logic function, and takes in a string parameter. Before we can check whether the string is a 
+                        palindrome, any spaces, capital letters, or other punctuation marks need to be removed. This is done with .toLowerCase() and
+                        regex, and the /[^a-z0-9]/ means that only letters a through z and letters 0 through 9 are allowed; anything otherwise is taken out.
+                        After, an array revString and an object returnObj are initialized. A for loop is used to reverse the user-entered string, using 
+                        a starting index of the string's last character and making its way to the front. Through each iteration of the loop, the letter 
+                        of the string is being added to the empty array revString, so by the end there is a fully reversed string. Since a palindrome reads 
+                        the same forwards and backwards, a simple if/else statement can check if the string is a palindrome. If the reversed string is 
+                        the same as the user-entered string, then it is a palindrome and the returnObj is set with a message responding accordingly to 
+                        the result. Then the reversed version of the input is stored in the returnObj, which is later used in display(). returnObj is 
+                        the output of checkPalin().
+                    </p>
+                    <hr>
+                    <h5>display()</h5>
+                    <p>
+                        The function display() is the view function and takes a parameter returnObj. To get to the alert section of the HTML, document.getElementById() 
+                        is used, and the message that was returned in checkPalin() is input into the HTML with innerHTML. The user is displayed whether their 
+                        entered string is a palindrome or not, and the reversed string. The "invisible" class that hid the alert is removed so the user can see their final 
+                        result.
+                    </p>
                 </div>
             </div>
         </div>

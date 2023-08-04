@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Natalie Cheng</title>
+    <title>TacoCat: A Coding Project By Natalie Cheng</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,13 +16,19 @@
     <link href="css/site.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/favicon_io/favicon-32x32.png">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Handjet:wght@500&family=Lugrasimo&family=Montserrat:ital,wght@1,600&display=swap" rel="stylesheet">
+    
+
 </head>
 
 <body class="d-flex flex-column h-100">
     <!-- Nav Section -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-nav">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="img/NC.png" class="d-inline-block align-text-top" alt="Natalie Cheng Logo" width="30" height="24"> APP NAME</a>
+            <a class="navbar-brand fontFamily" href="#"><img src="img/NC.png" class="d-inline-block align-text-top" alt="Natalie Cheng Logo" width="30" height="24"> TacoCat</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -39,7 +45,7 @@
                         <a class="nav-link" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://github.com/nataliemcheng/JSSiteTemplate">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/nataliemcheng/TacoCat">Git Repo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" target="_blank" href="https://nataliecheng-portfolio.netlify.app/">About</a>
@@ -52,7 +58,40 @@
     <!-- Main Section -->
     <main class="flex-shrink-0">
         <div class="container">
-            
+            <div class="row row-cols-1 row-cols-lg-2 mt-5">
+                <div class="col border-end border-2">
+                    <div class="row">
+                        <h4>TacoCat: A Coding Project</h4>
+                        <p>
+                            Taco Cat is a palindrome. A palindrome is a word, phrase, or sentence that reads the same way backwards and forwards.
+                            This program checks if the phrase entered is a palindrome. 
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <h4>Instructions</h4>
+                        <p>Enter a word, phrase, or sentence that you want to check, click the button, and see the results!</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <h5>Enter a word, sentence, or phrase</h5>
+                    <form>
+                        <div class="col-12">
+                            <input type="text" id="userInput" placeholder="TacoCat" aria-label="Enter a word, sentence, or phrase" class="form-control">
+                        </div>
+                        <div class="col-12 d-flex justify-content-end mt-2">
+                            <button type="button" class="btn btn-dark" id="btnSubmit">Let's Go!</button>
+                        </div>
+                        <div class="alert alert-success mt-5 invisible fade show" role="alert" id="alert">
+                            <h5 class="alert-heading" id="alertHeader">Well done!</h5>
+                            <hr>
+                            <p class="mb-0" id="msg">
+                                <!-- Insert Message Here -->
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -85,6 +124,9 @@
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
     <script src="js/site.js"></script>
+    <script>
+        document.getElementById("btnSubmit").addEventListener("click", getVals);
+    </script>
 </body>
 
 </html>
